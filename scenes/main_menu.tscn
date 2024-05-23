@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://bsowidmeg6dub"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_07ykk"]
+[ext_resource type="Texture2D" uid="uid://x1y3g515hnef" path="res://sprites/PiusMON_title_v2.png" id="1_qyq6f"]
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="2_wnwtm"]
+[ext_resource type="FontFile" uid="uid://c7h6sgdr0na52" path="res://font/crypto CRASH.ttf" id="4_b7bvq"]
+[ext_resource type="Script" path="res://scripts/exit_button.gd" id="4_ugq4l"]
+[ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="4_va2h6"]
+[ext_resource type="PackedScene" uid="uid://4qmgklhfk0lw" path="res://scenes/logo_anim.tscn" id="4_x5fe3"]
+[ext_resource type="PackedScene" uid="uid://cv7grnad6jb1l" path="res://scenes/scene_change_anim.tscn" id="5_7owbu"]
+
+[sub_resource type="Theme" id="Theme_xfuwv"]
+default_font = ExtResource("4_b7bvq")
+default_font_size = 125
+
+[sub_resource type="Theme" id="Theme_kf0dk"]
+default_font = ExtResource("4_b7bvq")
+default_font_size = 75
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_07ykk")
+
+[node name="main_menu_background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_wnwtm")
+
+[node name="startup_logo" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 138.0
+offset_top = 55.0
+offset_right = 1161.0
+offset_bottom = 339.0
+texture = ExtResource("1_qyq6f")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="exit_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1420.0
+offset_top = 100.0
+offset_right = 1820.0
+offset_bottom = 300.0
+theme = ExtResource("4_va2h6")
+text = "ExiT"
+script = ExtResource("4_ugq4l")
+
+[node name="battle_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 400.0
+offset_right = 950.0
+offset_bottom = 700.0
+theme = SubResource("Theme_xfuwv")
+text = "bAtTLE"
+
+[node name="settings_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 830.0
+offset_right = 400.0
+offset_bottom = 980.0
+theme = SubResource("Theme_kf0dk")
+text = "SeT"
+
+[node name="stat_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 830.0
+offset_right = 800.0
+offset_bottom = 980.0
+theme = SubResource("Theme_kf0dk")
+text = "stAT"
+
+[node name="info_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 830.0
+offset_right = 1200.0
+offset_bottom = 980.0
+theme = SubResource("Theme_kf0dk")
+text = "INfO"
+
+[node name="logo_rect" parent="." instance=ExtResource("4_x5fe3")]
+layout_mode = 0
+offset_left = 1425.0
+offset_top = 500.0
+offset_right = 1707.0
+offset_bottom = 900.0
+
+[node name="scene_change_anim" parent="." instance=ExtResource("5_7owbu")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_down" from="exit_button" to="exit_button" method="_on_button_down"]
+[connection signal="button_down" from="battle_button" to="." method="_on_battle_button_button_down"]
+[connection signal="button_down" from="settings_button" to="." method="_on_settings_button_button_down"]
+[connection signal="button_down" from="stat_button" to="." method="_on_stat_button_button_down"]
+[connection signal="button_down" from="info_button" to="." method="_on_info_button_button_down"]
+[connection signal="animation_finished" from="scene_change_anim" to="." method="_on_scene_change_anim_animation_finished"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dimwdu27glpce"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_gg0kr"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gg0kr")
+
+[node name="audio_player" type="AudioStreamPlayer" parent="."]

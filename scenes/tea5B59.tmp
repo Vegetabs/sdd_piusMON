@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfr5ss813q6xa"]
+
+[ext_resource type="Script" path="res://scripts/team_selection.gd" id="1_lfgvw"]
+[ext_resource type="PackedScene" uid="uid://cv7grnad6jb1l" path="res://scenes/scene_change_anim.tscn" id="1_q242p"]
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="2_wvgwe"]
+[ext_resource type="Texture2D" uid="uid://coohsmxkef8v0" path="res://sprites/team_selection_title.png" id="3_5hr8q"]
+[ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="4_hr5yo"]
+[ext_resource type="Theme" uid="uid://bmbj4fv1j3sbj" path="res://resources/selection_button.tres" id="5_482wh"]
+[ext_resource type="Script" path="res://scripts/p_option_manager.gd" id="5_iaain"]
+
+[node name="team_selection" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_lfgvw")
+
+[node name="team_select_background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_wvgwe")
+
+[node name="title_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 1034.0
+offset_bottom = 241.0
+texture = ExtResource("3_5hr8q")
+
+[node name="back_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1480.0
+offset_top = 50.0
+offset_right = 1880.0
+offset_bottom = 250.0
+theme = ExtResource("4_hr5yo")
+text = "BacK"
+
+[node name="accept_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 830.0
+offset_right = 450.0
+offset_bottom = 1030.0
+theme = ExtResource("4_hr5yo")
+text = "ACcePT"
+
+[node name="p_team_background" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 240.0
+offset_right = 1065.0
+offset_bottom = 840.0
+theme = ExtResource("2_wvgwe")
+
+[node name="p_options_container" type="VBoxContainer" parent="p_team_background"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 990.0
+offset_bottom = 590.0
+alignment = 1
+script = ExtResource("5_iaain")
+
+[node name="p_option1" type="Button" parent="p_team_background/p_options_container"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_482wh")
+text = "Spark Demon
+Attack - 0
+Speed - 0
+Life - 0"
+
+[node name="option_icon" type="TextureRect" parent="p_team_background/p_options_container/p_option1"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 170.0
+offset_bottom = 160.0
+
+[node name="option_type" type="TextureRect" parent="p_team_background/p_options_container/p_option1"]
+layout_mode = 0
+offset_left = 810.0
+offset_right = 970.0
+offset_bottom = 160.0
+
+[node name="p_option2" type="Button" parent="p_team_background/p_options_container"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_482wh")
+text = "Slime Beast
+Attack - 0
+Speed - 0
+Life - 0"
+
+[node name="option_type" type="TextureRect" parent="p_team_background/p_options_container/p_option2"]
+offset_left = 810.0
+offset_right = 970.0
+offset_bottom = 160.0
+
+[node name="option_icon" type="TextureRect" parent="p_team_background/p_options_container/p_option2"]
+offset_left = 10.0
+offset_right = 170.0
+offset_bottom = 160.0
+
+[node name="p_option3" type="Button" parent="p_team_background/p_options_container"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("5_482wh")
+text = "Orc Shamen
+Attack - 0
+Speed - 0
+Life - 0"
+
+[node name="option_icon" type="TextureRect" parent="p_team_background/p_options_container/p_option3"]
+offset_left = 10.0
+offset_right = 170.0
+offset_bottom = 160.0
+
+[node name="option_type" type="TextureRect" parent="p_team_background/p_options_container/p_option3"]
+offset_left = 810.0
+offset_right = 970.0
+offset_bottom = 160.0
+
+[node name="scene_change_anim" parent="." instance=ExtResource("1_q242p")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="button_down" from="back_button" to="." method="_on_back_button_button_down"]
+[connection signal="button_down" from="accept_button" to="." method="_on_accept_button_button_down"]
+[connection signal="animation_finished" from="scene_change_anim" to="." method="_on_scene_change_anim_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

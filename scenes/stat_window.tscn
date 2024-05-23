@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0rq1tlh08cs2"]
+
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="1_7420a"]
+[ext_resource type="Script" path="res://scripts/stat_window.gd" id="1_bfs77"]
+[ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="2_xe1vr"]
+[ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="4_gbkan"]
+[ext_resource type="FontFile" uid="uid://dljsiehehg1bk" path="res://font/ibm-dos-vga-9x16.ttf" id="4_nq6ki"]
+[ext_resource type="Script" path="res://scripts/win_text.gd" id="5_7b1q2"]
+[ext_resource type="StyleBox" uid="uid://dc26qhes6trr1" path="res://resources/focus_remover.tres" id="5_kkmks"]
+[ext_resource type="Script" path="res://scripts/loss_text.gd" id="6_niaxd"]
+[ext_resource type="Script" path="res://scripts/ratio_text.gd" id="7_u6ovh"]
+
+[node name="stat_window" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 150.0
+offset_top = 85.0
+offset_right = 1770.0
+offset_bottom = 996.0
+script = ExtResource("1_bfs77")
+
+[node name="stat_background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1620.0
+offset_bottom = 911.0
+theme = ExtResource("1_7420a")
+
+[node name="back_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1200.0
+offset_top = 20.0
+offset_right = 1600.0
+offset_bottom = 220.0
+theme = ExtResource("2_xe1vr")
+text = "BacK"
+
+[node name="win_text" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 200.0
+offset_right = 1435.0
+offset_bottom = 400.0
+theme = ExtResource("4_gbkan")
+theme_override_fonts/font = ExtResource("4_nq6ki")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_kkmks")
+text = "Win - [num]"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+script = ExtResource("5_7b1q2")
+
+[node name="loss_text" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 400.0
+offset_right = 1435.0
+offset_bottom = 600.0
+theme = ExtResource("4_gbkan")
+theme_override_fonts/font = ExtResource("4_nq6ki")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_kkmks")
+text = "Loss - [num]"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+script = ExtResource("6_niaxd")
+
+[node name="ratio_text" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 600.0
+offset_right = 1435.0
+offset_bottom = 800.0
+theme = ExtResource("4_gbkan")
+theme_override_fonts/font = ExtResource("4_nq6ki")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_kkmks")
+text = "Ratio - [win/loss]"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+script = ExtResource("7_u6ovh")
+
+[connection signal="button_down" from="back_button" to="." method="_on_back_button_button_down"]

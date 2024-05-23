@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4l1v4jqg6aif"]
+
+[ext_resource type="Script" path="res://scripts/e_options_manager.gd" id="2_28swd"]
+[ext_resource type="PackedScene" uid="uid://1vpsdirmopf4" path="res://scenes/e_option.tscn" id="3_hh6ap"]
+
+[node name="e_options_container" type="VBoxContainer"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 690.0
+offset_bottom = 490.0
+alignment = 1
+script = ExtResource("2_28swd")
+num_team = 2
+
+[node name="e_option1" parent="." instance=ExtResource("3_hh6ap")]
+layout_mode = 2
+
+[node name="e_option2" parent="." instance=ExtResource("3_hh6ap")]
+layout_mode = 2

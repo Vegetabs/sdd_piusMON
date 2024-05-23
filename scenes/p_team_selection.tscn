@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dipfl81ch7o7f"]
+
+[ext_resource type="PackedScene" uid="uid://dokjttj1w8qco" path="res://scenes/p_option.tscn" id="2_eum4v"]
+[ext_resource type="Script" path="res://scripts/p_option_manager.gd" id="2_qlf02"]
+
+[node name="p_options_container" type="VBoxContainer"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 990.0
+offset_bottom = 590.0
+alignment = 1
+script = ExtResource("2_qlf02")
+num_team = 3
+
+[node name="p_option1" parent="." instance=ExtResource("2_eum4v")]
+layout_mode = 2
+
+[node name="p_option2" parent="." instance=ExtResource("2_eum4v")]
+layout_mode = 2
+
+[node name="p_option3" parent="." instance=ExtResource("2_eum4v")]
+layout_mode = 2

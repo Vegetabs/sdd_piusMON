@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0r4tpwuadjcb"]
+
+[ext_resource type="Script" path="res://scripts/startup.gd" id="1_sskuk"]
+[ext_resource type="PackedScene" uid="uid://cv7grnad6jb1l" path="res://scenes/scene_change_anim.tscn" id="2_guwrw"]
+[ext_resource type="Texture2D" uid="uid://x1y3g515hnef" path="res://sprites/PiusMON_title_v2.png" id="3_n8e56"]
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="4_gj6cx"]
+
+[node name="startup" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_sskuk")
+
+[node name="startup_background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("4_gj6cx")
+
+[node name="startup_logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -511.5
+offset_top = -142.0
+offset_right = 511.5
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_n8e56")
+
+[node name="scene_change_anim" parent="." instance=ExtResource("2_guwrw")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="animation_finished" from="scene_change_anim" to="." method="_on_scene_change_anim_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

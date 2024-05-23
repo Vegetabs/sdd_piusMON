@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfr5ss813q6xa"]
+
+[ext_resource type="Script" path="res://scripts/team_selection.gd" id="1_lfgvw"]
+[ext_resource type="PackedScene" uid="uid://cv7grnad6jb1l" path="res://scenes/scene_change_anim.tscn" id="1_q242p"]
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="2_wvgwe"]
+[ext_resource type="Texture2D" uid="uid://coohsmxkef8v0" path="res://sprites/team_selection_title.png" id="3_5hr8q"]
+[ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="4_hr5yo"]
+[ext_resource type="PackedScene" uid="uid://dipfl81ch7o7f" path="res://scenes/p_team_selection.tscn" id="5_nupkm"]
+[ext_resource type="PackedScene" uid="uid://c4l1v4jqg6aif" path="res://scenes/e_team_selection.tscn" id="7_0h3jh"]
+[ext_resource type="Theme" uid="uid://ds2lafqmhlbgb" path="res://resources/title_text.tres" id="8_w5gtd"]
+[ext_resource type="StyleBox" uid="uid://dc26qhes6trr1" path="res://resources/focus_remover.tres" id="9_1spaa"]
+
+[node name="team_selection" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_lfgvw")
+
+[node name="team_select_background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_wvgwe")
+
+[node name="title_rect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 1034.0
+offset_bottom = 241.0
+texture = ExtResource("3_5hr8q")
+
+[node name="back_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1480.0
+offset_top = 50.0
+offset_right = 1880.0
+offset_bottom = 250.0
+theme = ExtResource("4_hr5yo")
+text = "BacK"
+
+[node name="accept_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 850.0
+offset_right = 450.0
+offset_bottom = 1050.0
+theme = ExtResource("4_hr5yo")
+text = "ACcePT"
+
+[node name="p_team_back" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 240.0
+offset_right = 1085.0
+offset_bottom = 860.0
+theme = ExtResource("2_wvgwe")
+
+[node name="p_team_selection" parent="." instance=ExtResource("5_nupkm")]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 250.0
+offset_right = 1075.0
+offset_bottom = 850.0
+
+[node name="info_title" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 250.0
+offset_right = 1715.0
+offset_bottom = 430.0
+theme = ExtResource("8_w5gtd")
+theme_override_styles/focus = ExtResource("9_1spaa")
+text = "EnEMY"
+editable = false
+context_menu_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="e_team_back" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 1142.5
+offset_top = 450.0
+offset_right = 1862.5
+offset_bottom = 794.0
+theme = ExtResource("2_wvgwe")
+
+[node name="e_team_selection" parent="." instance=ExtResource("7_0h3jh")]
+layout_mode = 0
+offset_left = 1152.5
+offset_top = 460.0
+offset_right = 1852.5
+offset_bottom = 784.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="scene_change_anim" parent="." instance=ExtResource("1_q242p")]
+
+[connection signal="button_down" from="back_button" to="." method="_on_back_button_button_down"]
+[connection signal="button_down" from="accept_button" to="." method="_on_accept_button_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="scene_change_anim" to="." method="_on_scene_change_anim_animation_finished"]

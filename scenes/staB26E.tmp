@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://1qcu2dvioqkm"]
+
+[ext_resource type="Script" path="res://scripts/statup.gd" id="1_dfirh"]
+[ext_resource type="Script" path="res://scripts/startup_background.gd" id="2_tjl1w"]
+[ext_resource type="Texture2D" uid="uid://x1y3g515hnef" path="res://sprites/PiusMON_title_v2.png" id="3_4mltn"]
+[ext_resource type="Script" path="res://scripts/startup_logo.gd" id="4_j1s83"]
+
+[node name="statup" type="Node2D"]
+script = ExtResource("1_dfirh")
+
+[node name="startup_background" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_tjl1w")
+
+[node name="startup_logo" type="TextureRect" parent="."]
+offset_right = 1023.0
+offset_bottom = 284.0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_4mltn")
+script = ExtResource("4_j1s83")

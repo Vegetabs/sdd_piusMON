@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv7grnad6jb1l"]
+
+[sub_resource type="Animation" id="Animation_tdjog"]
+resource_name = "backward"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("scene_change_anim/left_rect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [Vector2(960, 1080), Vector2(0, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("scene_change_anim/right_rect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [Vector2(1080, 960), Vector2(1080, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kqobh"]
+resource_name = "startup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("scene_change_anim/left_rect:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(960, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("scene_change_anim/right_rect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [Vector2(1080, 0), Vector2(1080, 960)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2atb3"]
+_data = {
+"backward": SubResource("Animation_tdjog"),
+"forward": SubResource("Animation_kqobh")
+}
+
+[node name="scene_change_anim" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_2atb3")
+}
+
+[node name="left_rect" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 1080.0
+color = Color(0, 0.824219, 0.996094, 1)
+
+[node name="right_rect" type="ColorRect" parent="."]
+offset_left = 1920.0
+offset_right = 3000.0
+offset_bottom = 960.0
+rotation = -4.71239
+color = Color(0, 0.824219, 0.996094, 1)

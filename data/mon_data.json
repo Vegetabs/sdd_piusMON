@@ -1,0 +1,20 @@
+[
+	{
+		"id":1,
+		"name":"Spark Demon",
+		"type":0,
+		"icon":"res://sprites/mon_icon/spark_demon_idle.png"
+	},
+	{
+		"id":2,
+		"name":"Slime Beast",
+		"type":1,
+		"icon":"res://sprites/mon_icon/slime_beast_idle.png"
+	},
+	{
+		"id":3,
+		"name":"Orc Shamen",
+		"type":2,
+		"icon":"res://sprites/mon_icon/orc_shaman_idle.png"
+	}
+]
