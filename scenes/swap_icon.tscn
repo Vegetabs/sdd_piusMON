@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2btbywcldl2v"]
+
+[ext_resource type="Texture2D" uid="uid://bndx18qjllbsh" path="res://sprites/swap_icon_back_fix.png" id="1_3im2f"]
+[ext_resource type="Texture2D" uid="uid://b4d31ep0n8ihr" path="res://sprites/swap_icon_prog_fix.png" id="2_vbx40"]
+
+[node name="swap_icon" type="TextureProgressBar"]
+offset_right = 1000.0
+offset_bottom = 1000.0
+scale = Vector2(0.1, 0.1)
+max_value = 1.0
+texture_under = ExtResource("1_3im2f")
+texture_progress = ExtResource("2_vbx40")
+texture_progress_offset = Vector2(50, 50)
