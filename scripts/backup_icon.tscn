@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj2gr6os2iakj"]
+
+[ext_resource type="Texture2D" uid="uid://mth6qen4gbq1" path="res://sprites/backup_mon_icon_fix.png" id="1_x5t7y"]
+[ext_resource type="Script" path="res://scripts/backup_icon.gd" id="2_p4d2e"]
+
+[node name="backup_icon" type="TextureRect"]
+offset_right = 1000.0
+offset_bottom = 1000.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_x5t7y")
+script = ExtResource("2_p4d2e")
+
+[node name="mon_texture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 800.0
+offset_bottom = 800.0

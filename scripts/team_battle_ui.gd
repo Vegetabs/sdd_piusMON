@@ -1,15 +1,25 @@
 extends Control
 
 @onready var health = $health_bar
+@onready var backup = $backup_icon
 @onready var swap_1 = $swap_icon1
 @onready var swap_2 = $swap_icon2
 @onready var swap_3 = $swap_icon3
 @onready var swap_arr = [swap_1,swap_2,swap_3]
 
 func _ready():
-	remove_swap()
+	pass
 
-func remove_swap():
+func set_health(val:int) -> void:
+	health.change_health(val)
+
+func set_max_health(val:int) -> void:
+	health.change_max_health(val)
+
+func set_backup(id:int) -> void:
+	backup.set_mon_texture(id)
+
+func remove_swap() -> void:
 	var arr = [swap_1.value,swap_2.value,swap_3.value]
 	if _sum_arr(arr) < 3:
 		var val = _find_next(arr)
