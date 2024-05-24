@@ -1,6 +1,6 @@
 extends TextureProgressBar
 
-@export var health:int = 0
+@export var health:int = 100
 
 func _ready():
 	self.value = health

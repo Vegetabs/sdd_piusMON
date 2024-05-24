@@ -7,7 +7,7 @@
 [node name="health_bar" type="TextureProgressBar"]
 offset_right = 601.0
 offset_bottom = 101.0
-value = 95.0
+value = 20.0
 texture_under = ExtResource("1_3wxlx")
 texture_progress = ExtResource("2_opqph")
 texture_progress_offset = Vector2(5, 5)
