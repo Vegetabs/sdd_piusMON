@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/team_battle_ui.gd" id="1_kgyjw"]
 [ext_resource type="PackedScene" uid="uid://bunkym72rkj5n" path="res://scenes/health_bar.tscn" id="1_khmv2"]
 [ext_resource type="PackedScene" uid="uid://b2btbywcldl2v" path="res://scenes/swap_icon.tscn" id="3_dy216"]
-[ext_resource type="PackedScene" uid="uid://bj2gr6os2iakj" path="res://scripts/backup_icon.tscn" id="4_4h1yp"]
+[ext_resource type="PackedScene" uid="uid://bj2gr6os2iakj" path="res://scenes/backup_icon.tscn" id="4_4h1yp"]
 
 [node name="p_team_battle_ui" type="Control"]
 layout_mode = 3

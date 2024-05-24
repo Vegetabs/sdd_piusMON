@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj5ikonuyqb56"]
+
+[ext_resource type="Script" path="res://scripts/team_battle_ui.gd" id="1_7st1v"]
+[ext_resource type="PackedScene" uid="uid://bunkym72rkj5n" path="res://scenes/health_bar.tscn" id="2_1o6hu"]
+[ext_resource type="PackedScene" uid="uid://bj2gr6os2iakj" path="res://scenes/backup_icon.tscn" id="3_wreia"]
+[ext_resource type="PackedScene" uid="uid://b2btbywcldl2v" path="res://scenes/swap_icon.tscn" id="4_56u3w"]
+
+[node name="e_team_battle_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1120.0
+offset_bottom = -830.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7st1v")
+
+[node name="health_bar" parent="." instance=ExtResource("2_1o6hu")]
+layout_mode = 0
+offset_left = 400.0
+offset_right = 1001.0
+fill_mode = 1
+
+[node name="backup_icon" parent="." instance=ExtResource("3_wreia")]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 1250.0
+
+[node name="swap_icon1" parent="." instance=ExtResource("4_56u3w")]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 125.0
+offset_right = 1900.0
+offset_bottom = 1125.0
+
+[node name="swap_icon2" parent="." instance=ExtResource("4_56u3w")]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 125.0
+offset_right = 1750.0
+offset_bottom = 1125.0
+
+[node name="swap_icon3" parent="." instance=ExtResource("4_56u3w")]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 125.0
+offset_right = 1600.0
+offset_bottom = 1125.0
