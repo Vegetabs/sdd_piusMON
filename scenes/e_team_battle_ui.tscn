@@ -18,32 +18,32 @@ script = ExtResource("1_7st1v")
 
 [node name="health_bar" parent="." instance=ExtResource("2_1o6hu")]
 layout_mode = 0
-offset_left = 400.0
-offset_right = 1001.0
+offset_left = 200.0
+offset_right = 801.0
 fill_mode = 1
 
 [node name="backup_icon" parent="." instance=ExtResource("3_wreia")]
 layout_mode = 0
-offset_left = 250.0
-offset_right = 1250.0
+offset_left = 50.0
+offset_right = 1050.0
 
 [node name="swap_icon1" parent="." instance=ExtResource("4_56u3w")]
 layout_mode = 0
-offset_left = 900.0
+offset_left = 700.0
 offset_top = 125.0
-offset_right = 1900.0
+offset_right = 1700.0
 offset_bottom = 1125.0
 
 [node name="swap_icon2" parent="." instance=ExtResource("4_56u3w")]
 layout_mode = 0
-offset_left = 750.0
+offset_left = 550.0
 offset_top = 125.0
-offset_right = 1750.0
+offset_right = 1550.0
 offset_bottom = 1125.0
 
 [node name="swap_icon3" parent="." instance=ExtResource("4_56u3w")]
 layout_mode = 0
-offset_left = 600.0
+offset_left = 400.0
 offset_top = 125.0
-offset_right = 1600.0
+offset_right = 1400.0
 offset_bottom = 1125.0
