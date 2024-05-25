@@ -8,7 +8,7 @@ extends Control
 @onready var swap_arr = [swap_1,swap_2,swap_3]
 
 func _ready():
-	set_health(50)
+	pass
 
 func set_health(val:int) -> void:
 	health.change_health(val)

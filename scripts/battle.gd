@@ -6,6 +6,11 @@ extends Control
 var p_team := []
 var e_team := []
 
+var ui_name_dict := {
+	"player":player_ui
+	"enemy":enemy_ui
+}
+
 func _ready():
 	SignalBus.load_battle.connect(_load_battle)
 	
@@ -13,6 +18,21 @@ func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	p_team = p_arr
 	e_team = e_arr
 	
+func _set_health_UI(team_name:String) -> void:
+	
+	pass
+
+func _set_backup_UI(team_name:String) -> void:
+	pass
+
+func _remove_swap_UI(team_name:String) -> void:
+	pass
+
+func get_ui_node(name:String):
+	if name == "player" or name == "enemy":
+		return ui_name_dict[name]
+	else:
+		assert(false,"Tried to get ui node with invalid name")
 
 func get_team(team_name:String) -> Array:
 	var arr := []
