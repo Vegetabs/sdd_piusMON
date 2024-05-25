@@ -18,3 +18,7 @@ signal resolution_changed
 #--Signals related to transmitting data--#
 signal team_confirmed(team:int,data:Array)
 signal load_team(p_team:Array,e_team:Array)
+
+#--Signals related to the battle scene--#
+signal attack(team:int)
+signal swap(team:int)
