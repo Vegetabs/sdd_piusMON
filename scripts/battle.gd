@@ -5,6 +5,8 @@ extends Control
 @onready var ui_arr = [player_ui,enemy_ui]
 var p_team := []
 var e_team := []
+var cur_p := 0
+var cur_e := 0
 
 var ui_name_dict := {
 	"player":player_ui,
@@ -13,7 +15,26 @@ var ui_name_dict := {
 
 func _ready():
 	SignalBus.load_battle.connect(_load_battle)
+	SignalBus.attack.connect(_attack)
+	SignalBus.swap.connect(_swap)
+
+func _attack(team_name:String) -> void:
+	pass
+
+func _swap(team_name:String) -> void:
+	var ui = _get_ui_node(team_name)
+	var cur = _get_cur(team_name)
+	ui.set_backup(get_team(team_name)[cur][0])
+	match cur:
+		0:
+			cur = 1
+		1:
+			cur = 0
+		_:
+			assert(false,"Cur set to invalid value")
 	
+	
+
 func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	p_team = p_arr
 	e_team = e_arr
@@ -39,10 +60,30 @@ func _get_ui_node(name:String):
 func get_team(team_name:String) -> Array:
 	var arr := []
 	match team_name:
-		"p_team":
+		"player":
 			arr = p_team
-		"e_team":
+		"enemy":
 			arr = e_team
 		_:
 			assert(false,"Trying to get team using invalid name")
 	return arr
+
+func _get_cur(team_name:String) -> int:
+	var val := -1 
+	match team_name:
+		"player":
+			val = cur_p
+		"enemy":
+			val = cur_e
+		_:
+			assert(false,"Trying to get team using invalid name")
+	return val
+
+func _set_cur(team_name:String,val) -> void:
+	match team_name:
+		"player":
+			cur_p = val
+		"enemy":
+			cur_e = val
+		_:
+			assert(false,"Trying to set current mon with invalid team")

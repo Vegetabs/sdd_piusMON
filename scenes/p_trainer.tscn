@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct8oe17uiv0jb"]
+[gd_scene load_steps=6 format=3 uid="uid://c5jcs7j3hqmnf"]
 
 [ext_resource type="Script" path="res://scripts/trainer.gd" id="1_ivl3q"]
 [ext_resource type="Texture2D" uid="uid://bm6daw1uioyic" path="res://sprites/entity_sprite/trainer/trainer_player_combined.png" id="1_sl3m4"]
@@ -33,6 +33,7 @@ script = ExtResource("1_ivl3q")
 [node name="trainer_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_sl3m4")
 hframes = 2
+frame = 1
 
 [node name="trainer_collision" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bag8pagx3bkqr"]
+
+[ext_resource type="Script" path="res://scripts/mon_char.gd" id="1_vispb"]
+[ext_resource type="Texture2D" uid="uid://b0plclo7ur8b4" path="res://sprites/entity_sprite/mon/spark_demon_combined.png" id="2_ks2pn"]
+
+[node name="mon_char" type="CharacterBody2D"]
+script = ExtResource("1_vispb")
+
+[node name="mon_collision" type="CollisionShape2D" parent="."]
+
+[node name="mon_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ks2pn")
+centered = false
+hframes = 4
+
+[node name="anim_player" type="AnimationPlayer" parent="."]

@@ -20,8 +20,9 @@ signal team_confirmed(team:int,data:Array)
 signal load_team(p_team:Array,e_team:Array)
 
 #--Signals related to the battle scene--#
-signal attack(team:int)
-signal swap(team:int)
+#--team_name = "player" or "enemy"--#
+signal attack(team_name:String)
+signal swap(team_name:String)
 signal change_health_ui(team_name:String)
 signal change_backup_ui(team_name:String)
 signal change_swap_ui(team_name:String)
