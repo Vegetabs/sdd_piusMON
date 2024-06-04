@@ -7,7 +7,7 @@ var p_team := []
 var e_team := []
 
 var ui_name_dict := {
-	"player":player_ui
+	"player":player_ui,
 	"enemy":enemy_ui
 }
 
@@ -18,17 +18,19 @@ func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	p_team = p_arr
 	e_team = e_arr
 	
-func _set_health_UI(team_name:String) -> void:
-	
-	pass
+func _set_health_UI(team_name:String,val:int) -> void:
+	var ui = _get_ui_node(team_name)
+	ui.set_health(val)
 
-func _set_backup_UI(team_name:String) -> void:
-	pass
+func _set_backup_UI(team_name:String,val:int) -> void:
+	var ui = _get_ui_node(team_name)
+	ui.set_backup(val)
 
 func _remove_swap_UI(team_name:String) -> void:
-	pass
+	var ui = _get_ui_node(team_name)
+	ui.remove_swap()
 
-func get_ui_node(name:String):
+func _get_ui_node(name:String):
 	if name == "player" or name == "enemy":
 		return ui_name_dict[name]
 	else:

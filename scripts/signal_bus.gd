@@ -18,3 +18,6 @@ signal resolution_changed
 #--Signals related to transmitting data--#
 signal team_confirmed(team:int,data:Array)
 signal load_team(p_team:Array,e_team:Array)
+signal change_health_ui(team_name:String)
+signal change_backup_ui(team_name:String)
+signal change_swap_ui(team_name:String)
