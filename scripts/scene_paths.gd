@@ -4,7 +4,7 @@ extends Node
 @export var startup := "res://scenes/startup.tscn"
 @export var main_menu := "res://scenes/main_menu.tscn"
 @export var team_selection := "res://scenes/team_selection.tscn"
-@export var battle := ""
+@export var battle := "res://scenes/battle.tscn"
 
 #--Window Scenes--#
 @export var set_window := "res://scenes/set_window.tscn"

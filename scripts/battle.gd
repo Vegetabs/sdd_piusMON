@@ -32,10 +32,9 @@ func _swap(team_name:String) -> void:
 			cur = 0
 		_:
 			assert(false,"Cur set to invalid value")
-	
-	
 
 func _load_battle(p_arr:Array,e_arr:Array) -> void:
+	#--Array formatted as [id,[stat_arr]]--#
 	p_team = p_arr
 	e_team = e_arr
 	

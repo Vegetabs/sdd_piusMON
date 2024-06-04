@@ -1,7 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://bag8pagx3bkqr"]
+[gd_scene load_steps=5 format=3 uid="uid://bag8pagx3bkqr"]
 
 [ext_resource type="Script" path="res://scripts/mon_char.gd" id="1_vispb"]
 [ext_resource type="Texture2D" uid="uid://b0plclo7ur8b4" path="res://sprites/entity_sprite/mon/spark_demon_combined.png" id="2_ks2pn"]
+
+[sub_resource type="Animation" id="Animation_l6w1f"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mon_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc5gv"]
+_data = {
+"attack": SubResource("Animation_l6w1f")
+}
 
 [node name="mon_char" type="CharacterBody2D"]
 script = ExtResource("1_vispb")
@@ -12,5 +32,11 @@ script = ExtResource("1_vispb")
 texture = ExtResource("2_ks2pn")
 centered = false
 hframes = 4
+frame = 1
 
 [node name="anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hc5gv")
+}
+
+[connection signal="animation_finished" from="anim_player" to="." method="_on_anim_player_animation_finished"]
