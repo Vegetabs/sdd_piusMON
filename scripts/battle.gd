@@ -1,5 +1,7 @@
 extends Control
 
+@onready var timer = $Timer
+@onready var anim = $scene_change_anim
 @onready var player_ui = $p_team_battle_ui
 @onready var enemy_ui = $e_team_battle_ui
 @onready var ui_arr = [player_ui,enemy_ui]
@@ -20,6 +22,9 @@ func _ready():
 	SignalBus.attack.connect(_attack)
 	SignalBus.swap.connect(_swap)
 	SignalBus.mon_death.connect(_check_death)
+	timer.wait_time = 0.25
+	timer.start()
+	
 
 func _attack(team_name:String) -> void:
 	pass
@@ -139,3 +144,6 @@ func _check_death(team_name:String) -> void:
 
 func _battle_end(losing_team:String) -> void:
 	pass
+
+func _on_timer_timeout():
+	anim.play("backward")

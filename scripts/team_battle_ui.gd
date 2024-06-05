@@ -1,5 +1,6 @@
 extends Control
 
+@export var team_name := ""
 @onready var health = $health_bar
 @onready var backup = $backup_icon
 @onready var swap_1 = $swap_icon1
@@ -8,7 +9,7 @@ extends Control
 @onready var swap_arr = [swap_1,swap_2,swap_3]
 
 func _ready():
-	pass
+	SignalBus.request_swaps.connect(_request_swaps)
 
 func set_health(val:int) -> void:
 	health.change_health(val)
@@ -19,8 +20,11 @@ func set_max_health(val:int) -> void:
 func set_backup(id:int) -> void:
 	backup.set_mon_texture(id)
 
-func get_swap() -> int:
+func get_swap() -> int: 
 	return(_sum_arr(swap_arr))
+
+func _request_swaps() -> void:
+	SignalBus.send_swaps.emit(get_swap())
 
 func remove_swap() -> void:
 	var arr = [swap_1.value,swap_2.value,swap_3.value]

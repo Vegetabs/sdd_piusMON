@@ -15,6 +15,7 @@ offset_bottom = -830.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7st1v")
+team_name = "enemy"
 
 [node name="health_bar" parent="." instance=ExtResource("2_1o6hu")]
 layout_mode = 0
