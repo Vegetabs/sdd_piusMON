@@ -24,10 +24,20 @@ func _ready():
 	SignalBus.mon_death.connect(_check_death)
 	timer.wait_time = 0.25
 	timer.start()
-	
+
+
 
 func _attack(team_name:String) -> void:
-	pass
+	var hit_name = _swap_team_name(team_name)
+	var attack_arr = get_team(team_name)[_get_cur(team_name)]
+	var dmg = attack_arr[1][0]
+	var hit_arr = get_team(hit_name)[_get_cur(hit_name)]
+	_set_arr_health(hit_arr,dmg)
+	var attack_mon = _get_mon(team_name)
+	attack_mon.attack()
+	var hit_mon = _get_mon(_swap_team_name(team_name))
+	hit_mon.hit()
+	
 
 func _swap(team_name:String) -> void:
 	var ui = _get_ui_node(team_name)
@@ -57,6 +67,12 @@ func _add_cur_health(arr:Array) -> Array:
 	for i in arr:
 		i.append(i[1][2])
 	return arr
+
+func _set_arr_health(arr:Array,val:int) -> void:
+	if (arr[2] - val) < 0:
+		arr[2] = 0
+	else:
+		arr[2] -= val
 
 func _set_health_UI(team_name:String,val:int) -> void:
 	var ui = _get_ui_node(team_name)
@@ -132,6 +148,16 @@ func _swap_cur(cur:int) -> int:
 		_:
 			assert(false,"Cur set to invalid value")
 	return cur
+
+func _swap_team_name(team_name:String) -> String:
+	match team_name:
+		"player":
+			team_name = "enemy"
+		"enemy":
+			team_name = "player"
+		_:
+			assert(false,"Trying to get swapped team names with invalid team name")
+	return team_name
 
 func _check_death(team_name:String) -> void:
 	var arr = get_team(team_name)
