@@ -675,13 +675,13 @@ offset_right = -10.0
 offset_bottom = -820.0
 
 [node name="p_trainer" parent="." instance=ExtResource("5_a2rg0")]
-position = Vector2(325, 750)
+position = Vector2(320, 750)
 scale = Vector2(10, 10)
 
 [node name="e_trainer" parent="." instance=ExtResource("6_olwoy")]
-position = Vector2(1595, 750)
+position = Vector2(1600, 750)
 scale = Vector2(10, 10)
 
 [node name="mon_char" parent="." instance=ExtResource("7_vnoj1")]
-position = Vector2(480, 725)
+position = Vector2(487.5, 832.5)
 scale = Vector2(10, 10)

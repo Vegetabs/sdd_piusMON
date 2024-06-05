@@ -18,6 +18,7 @@ func _ready():
 	SignalBus.load_team.connect(_load_battle)
 	SignalBus.attack.connect(_attack)
 	SignalBus.swap.connect(_swap)
+	SignalBus.mon_death.connect(_check_death)
 
 func _attack(team_name:String) -> void:
 	pass
@@ -26,24 +27,24 @@ func _swap(team_name:String) -> void:
 	var ui = _get_ui_node(team_name)
 	var cur = _get_cur(team_name)
 	ui.set_backup(get_team(team_name)[cur][0])
-	match cur:
-		0:
-			cur = 1
-		1:
-			cur = 0
-		_:
-			assert(false,"Cur set to invalid value")
+	cur = _swap_cur(cur)
 	var mon = _get_mon(team_name)
 	mon.swap(get_team(team_name)[cur])
 	
-
 func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	#--Array formatted as [id,[stat_arr]]--#
 	print(p_arr)
 	print(e_arr)
 	p_team = _add_cur_health(p_arr)
 	e_team = _add_cur_health(e_arr)
-	
+	_team_setup("player")
+	#_team_setup("enemy")
+
+func _team_setup(team_name:String) -> void:
+	var arr = get_team(team_name)[_get_cur(team_name)]
+	_set_max_health_UI(team_name,arr[1][2])
+	_set_backup_UI(team_name,arr[0])
+	_get_mon(team_name).setup_mon(arr)
 
 func _add_cur_health(arr:Array) -> Array:
 	#--Adds life value to end of mon_arr for use as cur_health--#
@@ -55,6 +56,10 @@ func _set_health_UI(team_name:String,val:int) -> void:
 	var ui = _get_ui_node(team_name)
 	ui.set_health(val)
 
+func _set_max_health_UI(team_name:String,val:int) -> void:
+	var ui = _get_ui_node(team_name)
+	ui.set_max_health(val)
+
 func _set_backup_UI(team_name:String,val:int) -> void:
 	var ui = _get_ui_node(team_name)
 	ui.set_backup(val)
@@ -63,11 +68,14 @@ func _remove_swap_UI(team_name:String) -> void:
 	var ui = _get_ui_node(team_name)
 	ui.remove_swap()
 
-func _get_ui_node(name:String):
-	if name == "player" or name == "enemy":
-		return ui_name_dict[name]
-	else:
-		assert(false,"Tried to get ui node with invalid name")
+func _get_ui_node(team_name:String):
+	match team_name:
+		"player":
+			return player_ui
+		"enemy":
+			return enemy_ui
+		_:
+			assert(false,"Tried to get ui node with invalid name")
 
 func get_team(team_name:String) -> Array:
 	var arr := []
@@ -108,3 +116,25 @@ func _get_mon(team_name:String):
 			pass
 		_:
 			assert(false,"Trying to get mon with invalid team_name")
+
+func _swap_cur(cur:int) -> int:
+	match cur:
+		0:
+			cur = 1
+		1:
+			cur = 0
+		_:
+			assert(false,"Cur set to invalid value")
+	return cur
+
+func _check_death(team_name:String) -> void:
+	var arr = get_team(team_name)
+	var cur = _get_cur(team_name)
+	cur = _swap_cur(cur)
+	if arr[cur][2] > 0:
+		_swap(team_name)
+	else:
+		_battle_end(team_name)
+
+func _battle_end(losing_team:String) -> void:
+	pass
