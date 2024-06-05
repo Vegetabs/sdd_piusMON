@@ -19,6 +19,9 @@ func set_max_health(val:int) -> void:
 func set_backup(id:int) -> void:
 	backup.set_mon_texture(id)
 
+func get_swap() -> int:
+	return(_sum_arr(swap_arr))
+
 func remove_swap() -> void:
 	var arr = [swap_1.value,swap_2.value,swap_3.value]
 	if _sum_arr(arr) < 3:

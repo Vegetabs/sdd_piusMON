@@ -76,17 +76,17 @@ _data = {
 }
 
 [node name="e_mon_char" type="CharacterBody2D"]
+scale = Vector2(-1, 1)
 script = ExtResource("1_jm336")
 team_name = "enemy"
 
 [node name="mon_collision" type="CollisionShape2D" parent="."]
-position = Vector2(4.5, 5.5)
+position = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_1if8x")
 
 [node name="mon_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_2jloi")
 centered = false
-flip_h = true
 hframes = 4
 
 [node name="anim_player" type="AnimationPlayer" parent="."]

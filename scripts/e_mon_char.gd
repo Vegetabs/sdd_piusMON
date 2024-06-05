@@ -10,7 +10,7 @@ var mon_cache := []
 var mon_state = 0 #--State = 0 (alive) or 1 (dead)--#
 
 func _ready():	
-	pass
+	change_mon_texture(1)
 
 func setup_mon(mon_info:Array) -> void:
 	mon_data = mon_info
@@ -18,7 +18,7 @@ func setup_mon(mon_info:Array) -> void:
 
 func change_mon_texture(mon_id:int) -> void:
 	mon_sprite.texture = load(ResourcePaths.get_mon_path(mon_id))
-	mon_sprite.offset = Vector2(mon_sprite.texture.get_width()*-1,mon_sprite.texture.get_height()*-1)
+	mon_sprite.offset = Vector2(0,mon_sprite.texture.get_height()*-1)
 
 func attack() -> void:
 	anim.play("attack")

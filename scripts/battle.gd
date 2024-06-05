@@ -4,6 +4,7 @@ extends Control
 @onready var enemy_ui = $e_team_battle_ui
 @onready var ui_arr = [player_ui,enemy_ui]
 @onready var player_mon = $mon_char
+@onready var enemy_mon = $e_mon_char
 var p_team := []
 var e_team := []
 var cur_p := 0
@@ -38,12 +39,12 @@ func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	p_team = _add_cur_health(p_arr)
 	e_team = _add_cur_health(e_arr)
 	_team_setup("player")
-	#_team_setup("enemy")
+	_team_setup("enemy")
 
 func _team_setup(team_name:String) -> void:
 	var arr = get_team(team_name)[_get_cur(team_name)]
 	_set_max_health_UI(team_name,arr[1][2])
-	_set_backup_UI(team_name,arr[0])
+	_set_backup_UI(team_name,get_team(team_name)[1][0])
 	_get_mon(team_name).setup_mon(arr)
 
 func _add_cur_health(arr:Array) -> Array:
@@ -113,7 +114,7 @@ func _get_mon(team_name:String):
 		"player":
 			return player_mon
 		"enemy":
-			pass
+			return enemy_mon
 		_:
 			assert(false,"Trying to get mon with invalid team_name")
 

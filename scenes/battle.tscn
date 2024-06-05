@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyw5drismtsgb"]
+[gd_scene load_steps=11 format=3 uid="uid://cyw5drismtsgb"]
 
 [ext_resource type="Script" path="res://scripts/battle.gd" id="1_oowjx"]
 [ext_resource type="Texture2D" uid="uid://dcsj3n4331mk2" path="res://sprites/0x72_DungeonTilesetII_v1.7.png" id="1_ro07p"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c5jcs7j3hqmnf" path="res://scenes/p_trainer.tscn" id="5_a2rg0"]
 [ext_resource type="PackedScene" path="res://scenes/e_trainer.tscn" id="6_olwoy"]
 [ext_resource type="PackedScene" uid="uid://bag8pagx3bkqr" path="res://scenes/mon_char.tscn" id="7_vnoj1"]
+[ext_resource type="PackedScene" uid="uid://n4j5k3xkctim" path="res://scenes/e_mon_char.tscn" id="8_wuv4l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmlwj"]
 texture = ExtResource("1_ro07p")
@@ -685,3 +686,7 @@ scale = Vector2(10, 10)
 [node name="mon_char" parent="." instance=ExtResource("7_vnoj1")]
 position = Vector2(487.5, 832.5)
 scale = Vector2(10, 10)
+
+[node name="e_mon_char" parent="." instance=ExtResource("8_wuv4l")]
+position = Vector2(1432.5, 832.5)
+scale = Vector2(-10, 10)
