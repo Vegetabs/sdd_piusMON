@@ -35,13 +35,10 @@ func _team_update(team:int,data:Array) -> void:
 	print(team)
 	match team:
 		0: #--Player team--#
-			mon_team.append(data)
-			print("hah")
+			mon_team = data
 			scene_state = "battle"
 			anim.play("forward")
 		1: #--Enemy team--#
 			e_mon_team.append(data)
-			print(data)
-			print(e_mon_team)
 		_: #--Exception--#
 			assert(false,"Trying to update non-existent team")
