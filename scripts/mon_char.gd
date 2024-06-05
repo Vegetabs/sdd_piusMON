@@ -25,7 +25,6 @@ func attack() -> void:
 	tween.tween_property(self,"position",Vector2(posx,posy),0.5)
 
 func swap() -> void:
-	
 	pass
 
 func hit() -> void:
@@ -35,4 +34,3 @@ func hit() -> void:
 func _on_anim_player_animation_finished(anim_name):
 	if anim_name == "attack":
 		pass
-		
