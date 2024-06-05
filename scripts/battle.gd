@@ -3,6 +3,7 @@ extends Control
 @onready var player_ui = $p_team_battle_ui
 @onready var enemy_ui = $e_team_battle_ui
 @onready var ui_arr = [player_ui,enemy_ui]
+@onready var player_mon = $mon_char
 var p_team := []
 var e_team := []
 var cur_p := 0
@@ -32,14 +33,24 @@ func _swap(team_name:String) -> void:
 			cur = 0
 		_:
 			assert(false,"Cur set to invalid value")
+	var mon = _get_mon(team_name)
+	mon.swap(get_team(team_name)[cur])
+	
 
 func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	#--Array formatted as [id,[stat_arr]]--#
 	print(p_arr)
 	print(e_arr)
-	p_team = p_arr
-	e_team = e_arr
+	p_team = _add_cur_health(p_arr)
+	e_team = _add_cur_health(e_arr)
 	
+
+func _add_cur_health(arr:Array) -> Array:
+	#--Adds life value to end of mon_arr for use as cur_health--#
+	for i in arr:
+		i.append(i[1][2])
+	return arr
+
 func _set_health_UI(team_name:String,val:int) -> void:
 	var ui = _get_ui_node(team_name)
 	ui.set_health(val)
@@ -88,3 +99,12 @@ func _set_cur(team_name:String,val) -> void:
 			cur_e = val
 		_:
 			assert(false,"Trying to set current mon with invalid team")
+
+func _get_mon(team_name:String):
+	match team_name:
+		"player":
+			return player_mon
+		"enemy":
+			pass
+		_:
+			assert(false,"Trying to get mon with invalid team_name")

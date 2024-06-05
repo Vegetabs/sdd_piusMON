@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bag8pagx3bkqr"]
+[gd_scene load_steps=8 format=3 uid="uid://bag8pagx3bkqr"]
 
 [ext_resource type="Script" path="res://scripts/mon_char.gd" id="1_vispb"]
 [ext_resource type="Texture2D" uid="uid://b0plclo7ur8b4" path="res://sprites/entity_sprite/mon/spark_demon_combined.png" id="2_ks2pn"]
@@ -36,10 +36,26 @@ tracks/0/keys = {
 "values": [2, 3, 2, 3, 0]
 }
 
+[sub_resource type="Animation" id="Animation_qtgue"]
+resource_name = "swap"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mon_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 0, 3, 0, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hc5gv"]
 _data = {
 "attack": SubResource("Animation_l6w1f"),
-"hit": SubResource("Animation_2a4sv")
+"hit": SubResource("Animation_2a4sv"),
+"swap": SubResource("Animation_qtgue")
 }
 
 [node name="mon_char" type="CharacterBody2D"]
@@ -53,7 +69,7 @@ shape = SubResource("RectangleShape2D_1if8x")
 texture = ExtResource("2_ks2pn")
 centered = false
 hframes = 4
-frame = 1
+frame = 2
 
 [node name="anim_player" type="AnimationPlayer" parent="."]
 libraries = {
