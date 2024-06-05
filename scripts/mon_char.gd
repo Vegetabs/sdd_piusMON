@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var posy = self.position.y
 
 func _ready():	
-	#attack()
+	attack()
 	pass
 
 func setup_mon(mon_info:Array) -> void:
@@ -22,9 +22,17 @@ func attack() -> void:
 	var tween = get_tree().create_tween()
 	tween.set_ease(2)
 	tween.tween_property(self,"position",Vector2(posx+200,posy),1)
+	tween.tween_property(self,"position",Vector2(posx,posy),0.5)
+
+func swap() -> void:
+	
+	pass
+
+func hit() -> void:
+	anim.play("hit")
+	pass
 
 func _on_anim_player_animation_finished(anim_name):
 	if anim_name == "attack":
-		var tween = get_tree().create_tween()
-		tween.set_ease(2)
-		tween.tween_property(self,"position",Vector2(posx,posy),0.5)
+		pass
+		

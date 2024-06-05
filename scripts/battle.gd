@@ -35,8 +35,6 @@ func _swap(team_name:String) -> void:
 
 func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	#--Array formatted as [id,[stat_arr]]--#
-	print("adsds")
-	print("haha")
 	print(p_arr)
 	print(e_arr)
 	p_team = p_arr
