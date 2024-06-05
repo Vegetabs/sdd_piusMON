@@ -6,9 +6,8 @@ extends CharacterBody2D
 @onready var posx = self.position.x
 @onready var posy = self.position.y
 
-func _ready():
-	
-	attack()
+func _ready():	
+	#attack()
 	pass
 
 func setup_mon(mon_info:Array) -> void:

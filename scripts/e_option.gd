@@ -5,7 +5,7 @@ extends Button
 @onready var option_icon = $option_icon
 #var option_size := Vector2(160,160)
 
-func _ready():
+func generate_mon():
 	#--Get random mon from mon_data.json--#
 	var rand : int = randi_range(0,len(mon_data)-1)
 	var mon_info : Dictionary = mon_data[rand]

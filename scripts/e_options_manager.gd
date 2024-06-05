@@ -2,6 +2,8 @@ extends VBoxContainer
 
 #@onready var mon_arr = ResourcePaths.get_json_data("mon_data")
 @export var num_team := 0
+@onready var option1 = $e_option1
+@onready var option2 = $e_option2
 var mon_team := []
 
 func _ready():
@@ -16,7 +18,10 @@ func _ready():
 #		option.update_option(mon_team[i])
 	
 	pass
-	
+
+func start_selection():
+	option1.generate_mon()
+	option2.generate_mon()
 
 #func _pick_team(num:int) -> Array:
 #	var team = []

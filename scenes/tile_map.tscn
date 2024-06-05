@@ -1,9 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://uwkikbgi2g0o"]
-
-[ext_resource type="Texture2D" uid="uid://bi3umeg7qqv5r" path="res://0x72_DungeonTilesetII_v1.7.png" id="1_mn5ds"]
+[gd_scene load_steps=3 format=3 uid="uid://uwkikbgi2g0o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6pwbn"]
-texture = ExtResource("1_mn5ds")
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
