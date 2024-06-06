@@ -18,6 +18,7 @@ signal resolution_changed
 #--Signals related to transmitting data--#
 signal team_confirmed(team:int,data:Array)
 signal load_team(p_team:Array,e_team:Array)
+signal load_battle_end(losing_name:String)
 
 #--Signals related to the battle scene--#
 #--team_name = "player" or "enemy"--#

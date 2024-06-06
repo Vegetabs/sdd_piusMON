@@ -1,6 +1,8 @@
 extends Control
 
 @onready var timer = $Timer
+@onready var b_timer = $battle_timer
+@onready var start_timer = $initial_timer
 @onready var anim = $scene_change_anim
 @onready var player_ui = $p_team_battle_ui
 @onready var enemy_ui = $e_team_battle_ui
@@ -11,6 +13,7 @@ var p_team := []
 var e_team := []
 var cur_p := 0
 var cur_e := 0
+var state_cache := []
 
 var ui_name_dict := {
 	"player":player_ui,
@@ -25,19 +28,79 @@ func _ready():
 	timer.wait_time = 0.25
 	timer.start()
 
+func _battle_start() -> void:
+	_display_choice_ui()
 
+func _battle_tick(player_choice:String) -> void:
+	var ai_choice = _ai_decision(player_choice)
+	var speed_check = _speed_check()
+	if ai_choice == "attack" and player_choice == "attack":
+		if speed_check:
+			_attack("player")
+			state_cache = ["enemy","attack"]
+		else:
+			_attack("enemy")
+			state_cache = ["player","attack"]
+	elif ai_choice == "attack" and player_choice == "swap":
+		if speed_check:
+			_swap("player")
+			state_cache = ["enemy","attack"]
+		else:
+			_attack("enemy")
+			state_cache = ["player","swap"]
+	elif ai_choice == "swap" and player_choice == "attack":
+		if speed_check:
+			_attack("player")
+			state_cache = ["enemy","swap"]
+		else:
+			_swap("enemy")
+			state_cache = ["player","attack"]
+	elif ai_choice == "swap" and player_choice == "swap":
+		if speed_check:
+			_swap("player")
+			state_cache = ["enemy","swap"]
+		else:
+			_swap("enemy")
+			state_cache = ["player","swap"]
+	b_timer.start()
+
+func _ai_decision(player_choice:String) -> String:
+	#var confidence := 0
+	if (int(e_team[cur_e][2]*_get_type_mult(p_team[cur_p][0],e_team[cur_e][0]))-p_team[cur_p][1][0]) <= 0: #--Check for if enemy will die in next turn--#"
+		if (e_team[_swap_cur(cur_e)][2]) > 0:
+			return "swap"
+		else:
+			return "attack"
+	else:
+		return "attack"
+
+func _speed_check() -> bool:
+	if p_team[cur_p][1][1] > e_team[cur_e][1][1]:
+		return true
+	elif p_team[cur_p][1][1] < e_team[cur_e][1][1]:
+		return false
+	else:
+		return _rand_bool()
+
+func _display_choice_ui() -> void:
+	var choice_ui = ScenePaths.str_to_path("battle_choice_ui")
+	var inst = load(choice_ui).instantiate()
+	add_child(inst)
 
 func _attack(team_name:String) -> void:
 	var hit_name = _swap_team_name(team_name)
 	var attack_arr = get_team(team_name)[_get_cur(team_name)]
-	var dmg = attack_arr[1][0]
 	var hit_arr = get_team(hit_name)[_get_cur(hit_name)]
+	var dmg = int(attack_arr[1][0]*_get_type_mult(attack_arr[0],hit_arr[0]))
 	_set_arr_health(hit_arr,dmg)
 	var attack_mon = _get_mon(team_name)
 	attack_mon.attack()
 	var hit_mon = _get_mon(_swap_team_name(team_name))
-	hit_mon.hit()
-	
+	hit_mon.hit(dmg)
+
+func _get_type_mult(type1:int,type2:int) -> float: #--type1 = attacking, type2 = hit--#
+	var type_comp_arr = [[1.0,0.5,2.0],[2.0,1.0,0.5],[0.5,2.0,1.0]] 
+	return type_comp_arr[type1-1][type2-1]
 
 func _swap(team_name:String) -> void:
 	var ui = _get_ui_node(team_name)
@@ -168,8 +231,26 @@ func _check_death(team_name:String) -> void:
 	else:
 		_battle_end(team_name)
 
+func _rand_bool() -> bool:
+	var rand = randi_range(0,1)
+	if rand == 0:
+		return true
+	else:
+		return false
+
 func _battle_end(losing_team:String) -> void:
-	pass
+	SignalBus.load_battle_end.emit("losing_team")
 
 func _on_timer_timeout():
 	anim.play("backward")
+	start_timer.start()
+
+func _on_battle_timer_timeout():
+	if state_cache[1] == "attack":
+		_attack(state_cache[0])
+	elif state_cache[1] == "swap":
+		_swap(state_cache[0])
+	state_cache = []
+
+func _on_initial_timer_timeout():
+	_display_choice_ui()

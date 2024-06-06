@@ -679,10 +679,12 @@ offset_bottom = -820.0
 [node name="p_trainer" parent="." instance=ExtResource("5_a2rg0")]
 position = Vector2(320, 750)
 scale = Vector2(10, 10)
+team = "player"
 
 [node name="e_trainer" parent="." instance=ExtResource("6_olwoy")]
 position = Vector2(1600, 750)
 scale = Vector2(10, 10)
+team = "enemy"
 
 [node name="mon_char" parent="." instance=ExtResource("7_vnoj1")]
 position = Vector2(487.5, 832.5)
@@ -696,6 +698,14 @@ scale = Vector2(-10, 10)
 wait_time = 0.25
 one_shot = true
 
+[node name="initial_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="battle_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="scene_change_anim" parent="." instance=ExtResource("9_u43f3")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="initial_timer" to="." method="_on_initial_timer_timeout"]
+[connection signal="timeout" from="battle_timer" to="." method="_on_battle_timer_timeout"]

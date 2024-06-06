@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bag8pagx3bkqr"]
+[gd_scene load_steps=10 format=3 uid="uid://bag8pagx3bkqr"]
 
 [ext_resource type="Script" path="res://scripts/mon_char.gd" id="1_vispb"]
 [ext_resource type="Texture2D" uid="uid://b0plclo7ur8b4" path="res://sprites/entity_sprite/mon/spark_demon_combined.png" id="2_ks2pn"]
@@ -67,10 +67,26 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_dv3a7"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mon_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hc5gv"]
 _data = {
 "RESET": SubResource("Animation_8dts3"),
 "attack": SubResource("Animation_l6w1f"),
+"death": SubResource("Animation_dv3a7"),
 "hit": SubResource("Animation_2a4sv"),
 "swap": SubResource("Animation_qtgue")
 }
