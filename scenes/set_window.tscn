@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvesj2vfn5f1"]
+[gd_scene load_steps=10 format=3 uid="uid://dvesj2vfn5f1"]
 
 [ext_resource type="Script" path="res://scripts/window.gd" id="1_be60s"]
 [ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="1_cyetf"]
 [ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="2_qbhwy"]
 [ext_resource type="FontFile" uid="uid://c7h6sgdr0na52" path="res://font/crypto CRASH.ttf" id="4_1ndua"]
+[ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="4_saeav"]
 [ext_resource type="StyleBox" uid="uid://dc26qhes6trr1" path="res://resources/focus_remover.tres" id="5_a3vmb"]
+[ext_resource type="PackedScene" uid="uid://bu0ivu24kg6lk" path="res://scenes/volume_control.tscn" id="6_6iw4w"]
+[ext_resource type="PackedScene" uid="uid://c0y6t25xdyrq0" path="res://scenes/resolution_control.tscn" id="8_t51qw"]
+[ext_resource type="PackedScene" uid="uid://cuws32tsnuuma" path="res://scenes/full_screen_control.tscn" id="9_fqjwe"]
 
 [node name="set_window" type="Control"]
 layout_mode = 3
@@ -36,14 +40,79 @@ offset_left = 50.0
 offset_top = 50.0
 offset_right = 475.0
 offset_bottom = 200.0
+theme = ExtResource("4_saeav")
 theme_override_fonts/font = ExtResource("4_1ndua")
 theme_override_font_sizes/font_size = 110
 theme_override_styles/focus = ExtResource("5_a3vmb")
-text = "Volume"
+text = "VolUME"
 alignment = 1
 context_menu_enabled = false
 virtual_keyboard_enabled = false
 middle_mouse_paste_enabled = false
 selecting_enabled = false
 
+[node name="volume_control" parent="." instance=ExtResource("6_6iw4w")]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 225.0
+offset_right = -970.0
+offset_bottom = -486.0
+
+[node name="resolution_text" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 475.0
+offset_right = 630.0
+offset_bottom = 625.0
+theme = ExtResource("4_saeav")
+theme_override_fonts/font = ExtResource("4_1ndua")
+theme_override_font_sizes/font_size = 110
+theme_override_styles/focus = ExtResource("5_a3vmb")
+text = "ReSOLuTION"
+alignment = 1
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="res_control" parent="." instance=ExtResource("8_t51qw")]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 650.0
+offset_right = -470.0
+offset_bottom = -61.0
+
+[node name="fullscreen_text" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 50.0
+offset_right = 1200.0
+offset_bottom = 200.0
+theme = ExtResource("4_saeav")
+theme_override_fonts/font = ExtResource("4_1ndua")
+theme_override_font_sizes/font_size = 110
+theme_override_styles/focus = ExtResource("5_a3vmb")
+text = "F-SCreEN"
+alignment = 1
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="full_screen_control" parent="." instance=ExtResource("9_fqjwe")]
+layout_mode = 1
+offset_left = 700.0
+offset_top = 225.0
+offset_right = -320.0
+offset_bottom = -486.0
+
+[node name="apply_button" type="Button" parent="."]
+offset_left = 1175.0
+offset_top = 650.0
+offset_right = 1575.0
+offset_bottom = 850.0
+theme = ExtResource("2_qbhwy")
+text = "AppLY"
+
 [connection signal="button_down" from="back_button" to="." method="_on_back_button_button_down"]
+[connection signal="button_down" from="apply_button" to="." method="_on_apply_button_button_down"]

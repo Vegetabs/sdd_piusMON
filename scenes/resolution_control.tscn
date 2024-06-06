@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0y6t25xdyrq0"]
+
+[ext_resource type="Script" path="res://scripts/resolution_control.gd" id="1_dl8rk"]
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="2_b8pnx"]
+[ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="3_1npb7"]
+[ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="4_7wfum"]
+[ext_resource type="FontFile" uid="uid://dljsiehehg1bk" path="res://font/ibm-dos-vga-9x16.ttf" id="5_t10is"]
+[ext_resource type="StyleBox" uid="uid://dc26qhes6trr1" path="res://resources/focus_remover.tres" id="6_lxc0e"]
+
+[node name="res_control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -820.0
+offset_bottom = -880.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dl8rk")
+
+[node name="res_background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1100.0
+offset_bottom = 200.0
+theme = ExtResource("2_b8pnx")
+
+[node name="left_res" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 175.0
+offset_bottom = 175.0
+theme = ExtResource("3_1npb7")
+theme_override_font_sizes/font_size = 0
+text = "<"
+
+[node name="right_res" type="Button" parent="."]
+layout_mode = 0
+offset_left = 925.0
+offset_top = 25.0
+offset_right = 1075.0
+offset_bottom = 175.0
+theme = ExtResource("3_1npb7")
+theme_override_font_sizes/font_size = 0
+text = ">"
+
+[node name="res_text" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 25.0
+offset_right = 900.0
+offset_bottom = 175.0
+theme = ExtResource("4_7wfum")
+theme_override_fonts/font = ExtResource("5_t10is")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("6_lxc0e")
+text = "1920x1080"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[connection signal="button_down" from="left_res" to="." method="_on_left_res_button_down"]
+[connection signal="button_down" from="right_res" to="." method="_on_right_res_button_down"]
