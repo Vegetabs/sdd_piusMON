@@ -51,7 +51,7 @@ func _load_settings() -> void:
 				assert(false,"settings.json contains invalid field")
 
 func _update_settings() -> void:
-	var settings = {"window_mode":window_mode,"resolution":resolution,"volume":volume}
+	var settings = {"window_mode":false,"resolution":resolution,"volume":volume}
 	for i in settings:
 		_update_settings_file(settings)
 
@@ -79,6 +79,7 @@ func _set_window_resolution(res:String) -> void:
 	
 func _set_volume(val:int) -> void:
 	volume = val
+	SignalBus.update_real_volume.emit()
 
 func _convert_resolution(res:String) -> Vector2:
 	var res_arr = res.split(" ")

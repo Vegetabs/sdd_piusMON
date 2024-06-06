@@ -1,7 +1,7 @@
 extends Control
 
 @onready var volume = $volume_control
-@onready var resolution = $resolution_text
+@onready var resolution = $res_control
 @onready var fullscreen = $full_screen_control
 
 func _on_back_button_button_down():
@@ -9,4 +9,9 @@ func _on_back_button_button_down():
 
 func _on_apply_button_button_down():
 	SignalBus.change_volume.emit(volume.get_volume())
-	SignalBus.change_resolution.emit(resolution.get_resolution)
+	var res = resolution.get_resolution()
+	res = "{res1} {res2}".format({"res1":res.x,"res2":res.y})
+	print(res)
+	SignalBus.change_resolution.emit(res)
+	SignalBus.change_window_mode.emit(fullscreen.get_screen_mode())
+	SignalBus.update_settings.emit()

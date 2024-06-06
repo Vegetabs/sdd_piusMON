@@ -1,6 +1,7 @@
 extends Control
 
 var current_scene := ""
+@onready var music = $music_player
 
 func _ready():
 	_connect_signals()
@@ -11,6 +12,7 @@ func _connect_signals() -> void:
 	SignalBus.change_scene.connect(_change_scene)
 	SignalBus.load_battle.connect(_load_battle)
 	SignalBus.load_battle_end.connect(_load_result)
+	SignalBus.update_real_volume.connect(_set_audio_volume)
 
 func _load_scene(path:String) -> void:
 	path = ScenePaths.str_to_path(path)
@@ -47,6 +49,14 @@ func _load_result(losing_team:String) -> void:
 	SignalBus.send_battle_info.emit(losing_team)
 	pass
 
+func _set_audio_volume() -> void:
+	var vol = int(Settings.get_volume()*0.80)
+	if vol < 80:
+		vol = (80-vol)*-1
+	else:
+		vol = 0
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), vol)
+
 #func _finish_startup():
 #	_delete_scene("startup")
 #	_load_scene(main_menu_path)
@@ -62,3 +72,6 @@ func _load_result(losing_team:String) -> void:
 #
 #func _set_volume(new_volume):
 #	self.volume = new_volume
+
+func _on_music_player_finished():
+	music.play()

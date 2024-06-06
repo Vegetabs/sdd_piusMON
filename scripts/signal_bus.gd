@@ -9,11 +9,12 @@ signal load_battle(p_team:Array,e_team:Array)
 
 
 #--Signals related to settings.gd--#
-signal change_resolution(resolution:Vector2)
+signal change_resolution(resolution:String)
 signal change_window_mode(mode:bool)
 signal change_volume(vol:int)
 signal update_settings
 signal resolution_changed
+signal update_real_volume()
 
 #--Signals related to transmitting data--#
 signal team_confirmed(team:int,data:Array)
