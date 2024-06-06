@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bu0ivu24kg6lk"]
+
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="1_0ew6n"]
+[ext_resource type="Script" path="res://scripts/volume_control.gd" id="1_28svk"]
+[ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="2_ligfi"]
+[ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="3_0tgcf"]
+[ext_resource type="FontFile" uid="uid://dljsiehehg1bk" path="res://font/ibm-dos-vga-9x16.ttf" id="4_bq260"]
+[ext_resource type="StyleBox" uid="uid://dc26qhes6trr1" path="res://resources/focus_remover.tres" id="5_50ivc"]
+
+[node name="volume_control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1320.0
+offset_bottom = -880.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28svk")
+
+[node name="volume_background" type="Panel" parent="."]
+offset_right = 600.0
+offset_bottom = 200.0
+theme = ExtResource("1_0ew6n")
+
+[node name="left_volume" type="Button" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 175.0
+offset_bottom = 175.0
+theme = ExtResource("2_ligfi")
+theme_override_font_sizes/font_size = 0
+text = "<"
+
+[node name="right_volume" type="Button" parent="."]
+offset_left = 425.0
+offset_top = 25.0
+offset_right = 575.0
+offset_bottom = 175.0
+theme = ExtResource("2_ligfi")
+theme_override_font_sizes/font_size = 0
+text = ">"
+
+[node name="volume_text" type="LineEdit" parent="."]
+offset_left = 150.0
+offset_top = 25.0
+offset_right = 450.0
+offset_bottom = 175.0
+theme = ExtResource("3_0tgcf")
+theme_override_fonts/font = ExtResource("4_bq260")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_50ivc")
+text = "100"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[connection signal="button_down" from="left_volume" to="." method="_on_left_volume_button_down"]
+[connection signal="button_down" from="right_volume" to="." method="_on_right_volume_button_down"]

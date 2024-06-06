@@ -12,8 +12,9 @@ var ratio = 0
 var timer_num = 0
 
 func _ready():
-	ResourcePaths.get_json_data("player_data")
 	SignalBus.send_battle_info.connect(_load_info)
+	_load_info("enemy")
+	timer.start()
 
 func _load_info(team:String) -> void:
 	_update_stats(team)

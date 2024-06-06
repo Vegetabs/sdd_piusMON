@@ -90,7 +90,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 0.25
 one_shot = true
 
 [node name="scene_change_anim" parent="." instance=ExtResource("6_37gnm")]
