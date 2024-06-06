@@ -30,7 +30,7 @@ func _request_swaps(t_name:String) -> void:
 
 func remove_swap() -> void:
 	var arr = [swap_1.value,swap_2.value,swap_3.value]
-	if _sum_arr(arr) < 3:
+	if _sum_arr(swap_arr) < 3:
 		var val = _find_next(arr)
 		if val != -1:
 			swap_arr[_find_next(arr)].value = 1

@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_iw2pw")
 
 [node name="ui_background" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 660.0
 offset_top = 340.0
 offset_right = 1260.0
@@ -21,6 +22,7 @@ offset_bottom = 740.0
 theme = ExtResource("1_jf6cf")
 
 [node name="attack_button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 760.0
 offset_top = 400.0
 offset_right = 1160.0
@@ -29,6 +31,7 @@ theme = ExtResource("2_2yroq")
 text = "AttACK"
 
 [node name="swap_button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 760.0
 offset_top = 550.0
 offset_right = 1160.0

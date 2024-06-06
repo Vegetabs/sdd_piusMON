@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dvesj2vfn5f1"]
 
-[ext_resource type="Script" path="res://scripts/window.gd" id="1_be60s"]
 [ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="1_cyetf"]
+[ext_resource type="Script" path="res://scripts/set_window.gd" id="1_roqny"]
 [ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="2_qbhwy"]
 [ext_resource type="FontFile" uid="uid://c7h6sgdr0na52" path="res://font/crypto CRASH.ttf" id="4_1ndua"]
 [ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="4_saeav"]
@@ -17,7 +17,7 @@ offset_left = 150.0
 offset_top = 85.0
 offset_right = 1770.0
 offset_bottom = 996.0
-script = ExtResource("1_be60s")
+script = ExtResource("1_roqny")
 
 [node name="stat_background" type="Panel" parent="."]
 layout_mode = 0

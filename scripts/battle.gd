@@ -120,7 +120,7 @@ func _attack(team_name:String) -> void:
 		SignalBus.play_hit.emit()
 		hit_mon.hit()
 	else:
-		hit_mon.death()
+		#hit_mon.death()
 		_check_end(hit_name)
 
 func _get_type_mult(type1:int,type2:int) -> float: #--type1 = attacking, type2 = hit--#
@@ -136,6 +136,8 @@ func _swap(team_name:String) -> void:
 	var mon = _get_mon(team_name)
 	#--Sets the backup mon icon to current mon--#
 	ui.set_backup(get_team(team_name)[cur])
+	#--Removes one swap from the swap icons--#
+	ui.remove_swap()
 	#--Gets secondary id--#
 	cur = _swap_cur(cur)
 	#--Sets max health of health bar equal to secondary mon hp--#
