@@ -17,14 +17,16 @@ func set_health(val:int) -> void:
 func set_max_health(val:int) -> void:
 	health.change_max_health(val)
 
-func set_backup(id:int) -> void:
-	backup.set_mon_texture(id)
+func set_backup(arr:Array) -> void:
+	if arr[2] > 0:
+		backup.set_mon_texture(arr[0])
 
 func get_swap() -> int: 
 	return(_sum_arr(swap_arr))
 
-func _request_swaps() -> void:
-	SignalBus.send_swaps.emit(get_swap())
+func _request_swaps(t_name:String) -> void:
+	if t_name == team_name:
+		SignalBus.send_swaps.emit(get_swap())
 
 func remove_swap() -> void:
 	var arr = [swap_1.value,swap_2.value,swap_3.value]
@@ -51,5 +53,5 @@ func _find_next(arr:Array) -> int:
 func _sum_arr(arr:Array) -> int:
 	var sum := 0
 	for i in arr:
-		sum += i
+		sum += i.value
 	return sum

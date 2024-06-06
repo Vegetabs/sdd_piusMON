@@ -10,6 +10,7 @@ func _connect_signals() -> void:
 	SignalBus.setup_complete.connect(_start_startup)
 	SignalBus.change_scene.connect(_change_scene)
 	SignalBus.load_battle.connect(_load_battle)
+	SignalBus.load_battle_end.connect(_load_result)
 
 func _load_scene(path:String) -> void:
 	path = ScenePaths.str_to_path(path)
@@ -40,6 +41,11 @@ func _start_startup() -> void:
 func _load_battle(p_team:Array,e_team:Array) -> void:
 	_change_scene("battle")
 	SignalBus.load_team.emit(p_team,e_team)
+
+func _load_result(losing_team:String) -> void:
+	_change_scene("battle_end")
+	SignalBus.send_battle_info.emit(losing_team)
+	pass
 
 #func _finish_startup():
 #	_delete_scene("startup")

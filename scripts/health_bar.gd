@@ -1,9 +1,10 @@
 extends TextureProgressBar
 
-@export var health:int = 100
+@onready var health:int
 
 func _ready():
-	self.value = health
+	#self.value = health
+	pass
 
 func change_health(val:int) -> void:
 	if (health-val) < 0:

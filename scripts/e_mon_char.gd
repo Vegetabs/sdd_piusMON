@@ -10,7 +10,7 @@ var mon_cache := []
 var mon_state = 0 #--State = 0 (alive) or 1 (dead)--#
 
 func _ready():	
-	change_mon_texture(1)
+	pass
 
 func setup_mon(mon_info:Array) -> void:
 	mon_data = mon_info
@@ -31,12 +31,11 @@ func swap(new_mon:Array) -> void:
 	mon_cache = new_mon
 	anim.play("swap")
 
-func hit(dmg:int) -> void:
-	if _set_health(dmg):
-		mon_state = 1
-		anim.play("death")
-	else:
-		anim.play("hit")
+func hit() -> void:
+	anim.play("hit")
+
+func death() -> void:
+	anim.play("death")
 
 func _set_health(val:int) -> bool:
 	if mon_data[2]-val <= 0:
@@ -55,4 +54,5 @@ func _on_anim_player_animation_finished(anim_name):
 	elif anim_name == "hit":
 		pass
 	elif anim_name == "death":
-		SignalBus.mon_death.emit(team_name)
+		#SignalBus.mon_death.emit(team_name)
+		pass

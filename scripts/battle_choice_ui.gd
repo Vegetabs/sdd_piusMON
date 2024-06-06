@@ -5,11 +5,11 @@ func _ready():
 
 func swaps_confirmation(val:int):
 	if val < 3:
-		SignalBus.swap.emit("player")
+		SignalBus.swap.emit("swap")
 		self.queue_free()
 
 func _on_attack_button_button_down():
-	SignalBus.attack.emit("player")
+	SignalBus.attack.emit("attack")
 	self.queue_free()
 
 func _on_swap_button_button_down():

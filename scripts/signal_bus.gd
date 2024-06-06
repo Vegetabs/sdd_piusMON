@@ -19,6 +19,7 @@ signal resolution_changed
 signal team_confirmed(team:int,data:Array)
 signal load_team(p_team:Array,e_team:Array)
 signal load_battle_end(losing_name:String)
+signal send_battle_info(losing_name:String)
 
 #--Signals related to the battle scene--#
 #--team_name = "player" or "enemy"--#
