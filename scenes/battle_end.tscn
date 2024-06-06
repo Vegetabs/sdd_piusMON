@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn4jlqm43hmyv"]
+[gd_scene load_steps=7 format=3 uid="uid://bn4jlqm43hmyv"]
 
 [ext_resource type="Script" path="res://scripts/battle_end.gd" id="1_ti0jv"]
+[ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="2_f4k78"]
+[ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="3_cyikl"]
+[ext_resource type="FontFile" uid="uid://dljsiehehg1bk" path="res://font/ibm-dos-vga-9x16.ttf" id="4_k8ays"]
+[ext_resource type="StyleBox" uid="uid://dc26qhes6trr1" path="res://resources/focus_remover.tres" id="5_ny8tf"]
+[ext_resource type="PackedScene" uid="uid://cv7grnad6jb1l" path="res://scenes/scene_change_anim.tscn" id="6_37gnm"]
 
 [node name="battle_end" type="Control"]
 layout_mode = 3
@@ -10,3 +15,85 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ti0jv")
+
+[node name="main_menu_background" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_f4k78")
+
+[node name="end_title" type="LineEdit" parent="."]
+offset_left = 335.0
+offset_top = 70.0
+offset_right = 1585.0
+offset_bottom = 270.0
+theme = ExtResource("3_cyikl")
+theme_override_fonts/font = ExtResource("4_k8ays")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_ny8tf")
+text = "YOU WON/LOST"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="win_txt" type="LineEdit" parent="."]
+offset_left = 335.0
+offset_top = 330.0
+offset_right = 1585.0
+offset_bottom = 530.0
+theme = ExtResource("3_cyikl")
+theme_override_fonts/font = ExtResource("4_k8ays")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_ny8tf")
+text = "WINS: [Insert]"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="loss_txt" type="LineEdit" parent="."]
+offset_left = 335.0
+offset_top = 570.0
+offset_right = 1585.0
+offset_bottom = 770.0
+theme = ExtResource("3_cyikl")
+theme_override_fonts/font = ExtResource("4_k8ays")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_ny8tf")
+text = "LOSSES: [Insert]"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="ratio_txt" type="LineEdit" parent="."]
+offset_left = 335.0
+offset_top = 810.0
+offset_right = 1585.0
+offset_bottom = 1010.0
+theme = ExtResource("3_cyikl")
+theme_override_fonts/font = ExtResource("4_k8ays")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = ExtResource("5_ny8tf")
+text = "RATE: [Insert]"
+alignment = 1
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="scene_change_anim" parent="." instance=ExtResource("6_37gnm")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="scene_change_anim" to="." method="_on_scene_change_anim_animation_finished"]
