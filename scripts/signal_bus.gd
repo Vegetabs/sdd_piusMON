@@ -32,3 +32,7 @@ signal change_swap_ui(team_name:String)
 signal mon_death(team_name:String)
 signal request_swaps(team_name:String)
 signal send_swaps(val:int)
+
+#--Signals related to playing sound effects--#
+signal play_hit
+signal play_attack

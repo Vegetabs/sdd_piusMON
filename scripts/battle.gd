@@ -111,11 +111,13 @@ func _attack(team_name:String) -> void:
 	#--Get mon object--#
 	var attack_mon = _get_mon(team_name)
 	#--Activate mon animation--#
+	SignalBus.play_attack.emit()
 	attack_mon.attack()
 	#--Get attacked mon object--#
 	var hit_mon = _get_mon(_swap_team_name(team_name))
 	#--Activate attacked mon animation--#
 	if hit_arr[2] > 0:
+		SignalBus.play_hit.emit()
 		hit_mon.hit()
 	else:
 		hit_mon.death()

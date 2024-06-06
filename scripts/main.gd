@@ -2,6 +2,8 @@ extends Control
 
 var current_scene := ""
 @onready var music = $music_player
+@onready var hit = $hit_sound
+@onready var attack = $attack_sound
 
 func _ready():
 	_connect_signals()
@@ -13,6 +15,8 @@ func _connect_signals() -> void:
 	SignalBus.load_battle.connect(_load_battle)
 	SignalBus.load_battle_end.connect(_load_result)
 	SignalBus.update_real_volume.connect(_set_audio_volume)
+	SignalBus.play_attack.connect(_play_attack)
+	SignalBus.play_hit.connect(_play_hit)
 
 func _load_scene(path:String) -> void:
 	path = ScenePaths.str_to_path(path)
@@ -56,6 +60,12 @@ func _set_audio_volume() -> void:
 	else:
 		vol = 0
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), vol)
+
+func _play_attack():
+	attack.play()
+
+func _play_hit():
+	hit.play()
 
 #func _finish_startup():
 #	_delete_scene("startup")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dimwdu27glpce"]
+[gd_scene load_steps=5 format=3 uid="uid://dimwdu27glpce"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_gg0kr"]
 [ext_resource type="AudioStream" uid="uid://0yhdgi2iibvu" path="res://Explorer_Capturez.wav" id="2_1beqj"]
 [ext_resource type="AudioStream" uid="uid://gam5ah0n8m7t" path="res://hitHurt.wav" id="3_drktt"]
+[ext_resource type="AudioStream" uid="uid://5x6vkjogate7" path="res://attack.wav" id="4_royt3"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -27,5 +28,6 @@ autoplay = true
 stream = ExtResource("3_drktt")
 
 [node name="attack_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_royt3")
 
 [connection signal="finished" from="music_player" to="." method="_on_music_player_finished"]
