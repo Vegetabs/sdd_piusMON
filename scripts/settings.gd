@@ -1,6 +1,6 @@
 extends Node
 
-@export var window_mode = 0
+@export var window_mode = false
 @export var resolution = Vector2(0,0)
 @export var volume = 0
 var file_path = "res://data/settings.json"
@@ -61,13 +61,13 @@ func _update_settings_file(settings) -> void:
 	file.store_string(data)
 	file.close()
 
-func _set_window_mode(mode:int) -> void:
+func _set_window_mode(mode:bool) -> void:
 	window_mode = mode
 	match mode:
-		0: #--Mode = Fullscreen--#
+		true: #--Mode = Fullscreen--#
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-		1: #--Mode = Windowed--#
+		false: #--Mode = Windowed--#
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 		_: #--Exception--#

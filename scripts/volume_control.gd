@@ -1,31 +1,25 @@
 extends Control
 
-@onready var left_fs = $left_fs
-@onready var right_fs = $right_fs
-@onready var fs_text = $fs_text
-var fullscreen = false
+@onready var left_volume = $left_volume
+@onready var right_volume = $right_volume
+@onready var volume_text = $volume_text
+var volume = 100
 
 func _ready():
-	_update_fs_text(fullscreen)
+	_update_volume_text(volume)
 
-func get_volume() -> bool:
-	return fullscreen
+func get_volume() -> int:
+	return volume
 
-func _update_fs_text(val:bool) -> void:
-	fs_text.text = "{fs}".format({"fs":bool_to_str(val)})
+func _update_volume_text(val:int) -> void:
+	volume_text.text = "{vol}".format({"vol":val})
 
-func bool_to_str(val:bool) -> String:
-	if val == true:
-		return "ON"
-	else:
-		return "OFF"
+func _on_left_volume_button_down():
+	if volume >= 5:
+		volume -= 5
+		_update_volume_text(volume)
 
-func _on_left_fs_button_down():
-	if fullscreen == true:
-		fullscreen = false
-		_update_fs_text(fullscreen)
-
-func _on_right_fs_button_down():
-	if fullscreen == false:
-		fullscreen = true
-		_update_fs_text(fullscreen)
+func _on_right_volume_button_down():
+	if volume <= 95:
+		volume += 5
+		_update_volume_text(volume)

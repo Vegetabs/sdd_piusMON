@@ -107,6 +107,7 @@ offset_right = -320.0
 offset_bottom = -486.0
 
 [node name="apply_button" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1175.0
 offset_top = 650.0
 offset_right = 1575.0

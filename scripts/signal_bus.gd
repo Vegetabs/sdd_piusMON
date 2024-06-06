@@ -9,9 +9,9 @@ signal load_battle(p_team:Array,e_team:Array)
 
 
 #--Signals related to settings.gd--#
-signal change_resolution
-signal change_window_mode
-signal change_volume
+signal change_resolution(resolution:Vector2)
+signal change_window_mode(mode:bool)
+signal change_volume(vol:int)
 signal update_settings
 signal resolution_changed
 

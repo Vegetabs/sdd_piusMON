@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cuws32tsnuuma"]
 
-[ext_resource type="Script" path="res://scripts/volume_control.gd" id="1_xxesi"]
+[ext_resource type="Script" path="res://scripts/full_screen_control.gd" id="1_155df"]
 [ext_resource type="Theme" uid="uid://bv5bbbo7c6pp1" path="res://resources/background.tres" id="2_8sugm"]
 [ext_resource type="Theme" uid="uid://dcfaoj0se3h1n" path="res://resources/back_button.tres" id="3_rixph"]
 [ext_resource type="Theme" uid="uid://ch65v87ik6ce1" path="res://resources/line_edit.tres" id="4_xrssq"]
@@ -16,7 +16,7 @@ offset_right = -1320.0
 offset_bottom = -880.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xxesi")
+script = ExtResource("1_155df")
 
 [node name="fs_background" type="Panel" parent="."]
 layout_mode = 0
