@@ -14,6 +14,7 @@ var e_team := []
 var cur_p := 0
 var cur_e := 0
 var state_cache := []
+var turn_num = 0
 
 var ui_name_dict := {
 	"player":player_ui,
@@ -42,19 +43,11 @@ func _battle_tick(player_choice:String) -> void:
 			_attack("enemy")
 			state_cache = ["player","attack"]
 	elif ai_choice == "attack" and player_choice == "swap":
-		if speed_check:
-			_swap("player")
-			state_cache = ["enemy","attack"]
-		else:
-			_attack("enemy")
-			state_cache = ["player","swap"]
+		_swap("player")
+		state_cache = ["enemy","attack"]
 	elif ai_choice == "swap" and player_choice == "attack":
-		if speed_check:
-			_attack("player")
-			state_cache = ["enemy","swap"]
-		else:
-			_swap("enemy")
-			state_cache = ["player","attack"]
+		_swap("enemy")
+		state_cache = ["player","attack"]
 	elif ai_choice == "swap" and player_choice == "swap":
 		if speed_check:
 			_swap("player")
@@ -257,13 +250,12 @@ func _swap_team_name(team_name:String) -> String:
 			assert(false,"Trying to get swapped team names with invalid team name")
 	return team_name
 
-func _check_end(team_name:String) -> void:
+func _check_end(team_name:String) -> bool:
 	var arr = get_team(team_name)
 	if arr[0][2] <= 0 and arr[1][2] <= 0:
-		_battle_end(team_name)
+		return true
 	else:
-		_swap(team_name)
-		start_timer.start()
+		return false
 
 func _rand_bool() -> bool:
 	var rand = randi_range(0,1)
@@ -281,23 +273,38 @@ func _on_timer_timeout():
 	start_timer.start()
 
 func _on_battle_timer_timeout():
-	var team_name = state_cache[0]
-	var mon = _get_mon(team_name)
-	var mon_arr = get_team(team_name)[_get_cur(team_name)]
-	if mon_arr[2] > 0:
-		var action_type = state_cache[1]
-		match action_type:
-			"attack":
-				_attack(team_name)
-			"swap":
+	if turn_num == 0:
+		var team_name = state_cache[0]
+		var cur = _get_cur(team_name)
+		var mon_arr = get_team(team_name)[cur]
+		if mon_arr[2] > 0:
+			var action_type = state_cache[1]
+			match action_type:
+				"attack":
+					_attack(team_name)
+				"swap":
+					_swap(team_name)
+				_:
+					assert(false,"mon is trying to perform invalid action")
+		else:
+			if _check_end(team_name):
+				_battle_end(team_name)
+			else:
 				_swap(team_name)
-			_:
-				assert(false,"mon is trying to perform invalid action")
-		start_timer.start()
+		turn_num += 1
+		b_timer.start()
 	else:
-		_check_end(team_name)
-	state_cache = []
-	
+		var team_name = _swap_team_name(state_cache[0])
+		var cur = _get_cur(team_name)
+		var mon_arr = get_team(team_name)[cur]
+		if mon_arr[2] <= 0:
+			if _check_end(team_name):
+				_battle_end(team_name)
+			else:
+				_swap(team_name)
+		turn_num = 0
+		_display_choice_ui()
+
 #	var cur = _get_cur(state_cache[0])
 #	var team = get_team(state_cache[0])
 #	print("jaja")

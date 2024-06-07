@@ -17,7 +17,8 @@ func change_health(arr:Array,dmg:int) -> void:
 	var hp_ratio : float = float(mon_cur)/float(mon_max)
 	print(hp_ratio)
 	print(dmg)
-	health = int(float(max)*hp_ratio) - int(float(dmg)*(float(max)/float(mon_max)))
+	health = int(float(max)*hp_ratio) 
+	#health = int(float(max)*hp_ratio) -int(float(dmg)*(float(mon_max)/float(max)))
 	print(health)
 	if health < 0:
 		health = 0

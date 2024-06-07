@@ -46,14 +46,14 @@ func _set_health(val:int) -> bool:
 		return false
 
 func _on_anim_player_animation_finished(anim_name):
-	anim.play("RESET")
 	if anim_name == "attack":
-		pass
+		anim.play("RESET")
 	elif anim_name == "swap":
 		setup_mon(mon_cache)
 		mon_cache = []
+		anim.play("RESET")
 	elif anim_name == "hit":
-		pass
+		anim.play("RESET")
 	elif anim_name == "death":
 		#SignalBus.mon_death.emit(team_name)
-		pass
+		anim.play("RESET")
