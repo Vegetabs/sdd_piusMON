@@ -4,8 +4,7 @@ extends CharacterBody2D
 @export var team:String
 
 func _ready():
-	SignalBus.attack.connect(attack)
+	pass
 
-func attack(team_name):
-	if team_name == team:
-		anim.play("trainer_point")
+func attack():
+	anim.play("trainer_point")

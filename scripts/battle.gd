@@ -9,6 +9,8 @@ extends Control
 @onready var ui_arr = [player_ui,enemy_ui]
 @onready var player_mon = $mon_char
 @onready var enemy_mon = $e_mon_char
+@onready var player_trainer = $p_trainer
+@onready var enemy_trainer = $e_trainer
 var p_team := []
 var e_team := []
 var cur_p := 0
@@ -106,6 +108,7 @@ func _attack(team_name:String) -> void:
 	#--Activate mon animation--#
 	SignalBus.play_attack.emit()
 	attack_mon.attack()
+	_get_trainer(team_name).attack()
 
 func _get_type_mult(type1:int,type2:int) -> float: #--type1 = attacking, type2 = hit--#
 	var type_comp_arr = [[1.0,0.5,2.0],[2.0,1.0,0.5],[0.5,2.0,1.0]] 
@@ -130,6 +133,7 @@ func _swap(team_name:String) -> void:
 	mon.swap(get_team(team_name)[cur])
 	#--Sets secondary mon to current mon
 	_set_cur(team_name,cur)
+	_get_trainer(team_name).attack()
 	
 func _load_battle(p_arr:Array,e_arr:Array) -> void:
 	#--Array formatted as [id,[stat_arr]]--#
@@ -229,6 +233,15 @@ func _get_mon(team_name:String):
 			return enemy_mon
 		_:
 			assert(false,"Trying to get mon with invalid team_name")
+
+func _get_trainer(team_name:String):
+	match team_name:
+		"player":
+			return player_trainer
+		"enemy":
+			return enemy_trainer
+		_:
+			assert(false,"Trying to get trainer with invalid team_name")
 
 func _swap_cur(cur:int) -> int:
 	match cur:
