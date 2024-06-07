@@ -20,6 +20,8 @@ func set_max_health(val:int) -> void:
 func set_backup(arr:Array) -> void:
 	if arr[2] > 0:
 		backup.set_mon_texture(arr[0])
+	else:
+		backup.remove_mon_texture()
 
 func get_swap() -> int: 
 	return(_sum_arr(swap_arr))

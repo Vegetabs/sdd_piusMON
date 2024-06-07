@@ -8,3 +8,6 @@ func set_mon_texture(id:int) -> void:
 		if int(i["id"]) == id:
 			mon_texture.texture = load(i["icon"])
 			break
+
+func remove_mon_texture() -> void:
+	mon_texture.texture = null
