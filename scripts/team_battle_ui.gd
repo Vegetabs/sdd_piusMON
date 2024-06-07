@@ -11,8 +11,8 @@ extends Control
 func _ready():
 	SignalBus.request_swaps.connect(_request_swaps)
 
-func set_health(val:int) -> void:
-	health.change_health(val)
+func set_health(arr:Array,dmg:int) -> void:
+	health.change_health(arr,dmg)
 
 func set_max_health(val:int) -> void:
 	health.change_max_health(val)

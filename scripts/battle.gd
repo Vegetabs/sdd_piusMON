@@ -107,21 +107,12 @@ func _attack(team_name:String) -> void:
 	_set_arr_health(hit_name,dmg)
 	print(hit_arr[2])
 	#--Update health ui for attacked mon--#
-	_get_ui_node(hit_name).set_health(dmg)
+	_get_ui_node(hit_name).set_health(hit_arr,dmg)
 	#--Get mon object--#
 	var attack_mon = _get_mon(team_name)
 	#--Activate mon animation--#
 	SignalBus.play_attack.emit()
 	attack_mon.attack()
-	#--Get attacked mon object--#
-	var hit_mon = _get_mon(_swap_team_name(team_name))
-	#--Activate attacked mon animation--#
-	if hit_arr[2] > 0:
-		SignalBus.play_hit.emit()
-		hit_mon.hit()
-	else:
-		#hit_mon.death()
-		_check_end(hit_name)
 
 func _get_type_mult(type1:int,type2:int) -> float: #--type1 = attacking, type2 = hit--#
 	var type_comp_arr = [[1.0,0.5,2.0],[2.0,1.0,0.5],[0.5,2.0,1.0]] 
@@ -140,10 +131,8 @@ func _swap(team_name:String) -> void:
 	ui.remove_swap()
 	#--Gets secondary id--#
 	cur = _swap_cur(cur)
-	#--Sets max health of health bar equal to secondary mon hp--#
-	ui.set_max_health(get_team(team_name)[cur][1][2]*5)
 	#--Sets health bar equal to secondary mon hp--#
-	ui.set_health(get_team(team_name)[cur][2])
+	ui.set_health(get_team(team_name)[cur],0)
 	#--Calls swap animation on current mon--#
 	mon.swap(get_team(team_name)[cur])
 	#--Sets secondary mon to current mon
@@ -160,7 +149,7 @@ func _load_battle(p_arr:Array,e_arr:Array) -> void:
 
 func _team_setup(team_name:String) -> void:
 	var arr = get_team(team_name)[_get_cur(team_name)]
-	_set_max_health_UI(team_name,arr[1][2]*5)
+	_set_health_UI(team_name,arr,0)
 	_set_backup_UI(team_name,get_team(team_name)[1])
 	_get_mon(team_name).setup_mon(arr)
 
@@ -183,9 +172,9 @@ func _set_arr_health(team_name:String,val:int) -> void:
 			else:
 				e_team[cur_e][2] -= val
 
-func _set_health_UI(team_name:String,val:int) -> void:
+func _set_health_UI(team_name:String,arr:Array,dmg:int) -> void:
 	var ui = _get_ui_node(team_name)
-	ui.set_health(val)
+	ui.set_health(arr,dmg)
 
 func _set_max_health_UI(team_name:String,val:int) -> void:
 	var ui = _get_ui_node(team_name)
@@ -274,6 +263,7 @@ func _check_end(team_name:String) -> void:
 		_battle_end(team_name)
 	else:
 		_swap(team_name)
+		start_timer.start()
 
 func _rand_bool() -> bool:
 	var rand = randi_range(0,1)
@@ -292,17 +282,22 @@ func _on_timer_timeout():
 
 func _on_battle_timer_timeout():
 	var team_name = state_cache[0]
-	var action_type = state_cache[1]
-	match action_type:
-		"attack":
-			_attack(team_name)
-			pass
-		"swap":
-			_swap(team_name)
-		_:
-			assert(false,"mon is trying to perform invalid action")
+	var mon = _get_mon(team_name)
+	var mon_arr = get_team(team_name)[_get_cur(team_name)]
+	if mon_arr[2] > 0:
+		var action_type = state_cache[1]
+		match action_type:
+			"attack":
+				_attack(team_name)
+			"swap":
+				_swap(team_name)
+			_:
+				assert(false,"mon is trying to perform invalid action")
+		start_timer.start()
+	else:
+		_check_end(team_name)
 	state_cache = []
-	start_timer.start()
+	
 #	var cur = _get_cur(state_cache[0])
 #	var team = get_team(state_cache[0])
 #	print("jaja")
@@ -321,6 +316,15 @@ func _on_battle_timer_timeout():
 #	else:
 #		_battle_end(state_cache[0])
 
+#	#--Get attacked mon object--#
+#	var hit_mon = _get_mon(_swap_team_name(team_name))
+#	#--Activate attacked mon animation--#
+#	if hit_arr[2] > 0:
+#		SignalBus.play_hit.emit()
+#		hit_mon.hit()
+#	else:
+#		#hit_mon.death()
+#		_check_end(hit_name)
 
 func _on_initial_timer_timeout():
 	_display_choice_ui()
