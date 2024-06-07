@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt7vi0ayy70lv"]
+[gd_scene load_steps=6 format=3 uid="uid://lbh88367pb7m"]
 
 [ext_resource type="Script" path="res://scripts/trainer.gd" id="1_mr1og"]
 [ext_resource type="Texture2D" uid="uid://ccb275p58jpu8" path="res://sprites/entity_sprite/trainer/trainer_enemy_combined.png" id="2_l2ryg"]
@@ -29,7 +29,6 @@ _data = {
 
 [node name="e_trainer" type="CharacterBody2D"]
 script = ExtResource("1_mr1og")
-team = 1
 
 [node name="trainer_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_l2ryg")

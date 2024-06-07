@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://clti0i3ncur18" path="res://scenes/p_team_battle_ui.tscn" id="3_d32ve"]
 [ext_resource type="PackedScene" uid="uid://bj5ikonuyqb56" path="res://scenes/e_team_battle_ui.tscn" id="4_8fk6a"]
 [ext_resource type="PackedScene" uid="uid://c5jcs7j3hqmnf" path="res://scenes/p_trainer.tscn" id="5_a2rg0"]
-[ext_resource type="PackedScene" path="res://scenes/e_trainer.tscn" id="6_olwoy"]
+[ext_resource type="PackedScene" uid="uid://lbh88367pb7m" path="res://scenes/e_trainer.tscn" id="6_olwoy"]
 [ext_resource type="PackedScene" uid="uid://bag8pagx3bkqr" path="res://scenes/mon_char.tscn" id="7_vnoj1"]
 [ext_resource type="PackedScene" uid="uid://n4j5k3xkctim" path="res://scenes/e_mon_char.tscn" id="8_wuv4l"]
 [ext_resource type="PackedScene" uid="uid://cv7grnad6jb1l" path="res://scenes/scene_change_anim.tscn" id="9_u43f3"]

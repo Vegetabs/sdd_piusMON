@@ -96,11 +96,8 @@ func _attack(team_name:String) -> void:
 	var hit_arr = get_team(hit_name)[_get_cur(hit_name)]
 	#--Calculate damage against enemy
 	var dmg = attack_arr[1][0]*_get_type_mult(attack_arr[0],hit_arr[0])
-	print("haha")
-	print(hit_arr[2])
 	#--Set mon array health to correct value--#
 	_set_arr_health(hit_name,dmg)
-	print(hit_arr[2])
 	#--Update health ui for attacked mon--#
 	_get_ui_node(hit_name).set_health(hit_arr,dmg)
 	#--Get mon object--#
