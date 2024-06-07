@@ -46,6 +46,7 @@ func _set_health(val:int) -> bool:
 		return false
 
 func _on_anim_player_animation_finished(anim_name):
+	anim.play("RESET")
 	if anim_name == "attack":
 		pass
 	elif anim_name == "swap":

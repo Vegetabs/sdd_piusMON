@@ -36,8 +36,6 @@ func remove_swap() -> void:
 			swap_arr[_find_next(arr)].value = 1
 		else:
 			assert(false,"Error in _find_next(), check params")
-	else:
-		assert(false,"Can't remove swap, no swaps remaining")
 
 func _find_next(arr:Array) -> int:
 	for i in range(len(arr)):
